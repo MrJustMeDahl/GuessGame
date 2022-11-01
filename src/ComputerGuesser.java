@@ -5,6 +5,7 @@ public class ComputerGuesser implements IGuesser
 	private int min;
 	private int max;
 	private int currentGuess;
+	private int guessType;
 
 	public void yourTurn() {}
 
@@ -22,7 +23,12 @@ public class ComputerGuesser implements IGuesser
 	public int makeGuess()
 	{
 		Random rnd = new Random();
-		currentGuess = rnd.nextInt(min, max);
+		guessType = rnd.nextInt(1,3);
+		if(guessType == 1){
+			currentGuess = ((max + min)/2);
+		} else if(guessType == 2) {
+			currentGuess = rnd.nextInt(min, max + 1);
+		}
 		return currentGuess;
 	}
 
