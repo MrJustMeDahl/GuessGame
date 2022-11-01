@@ -23,11 +23,21 @@ public class ComputerGuesser implements IGuesser
 	public int makeGuess()
 	{
 		Random rnd = new Random();
-		guessType = rnd.nextInt(1,3);
+		guessType = rnd.nextInt(1,4);
 		if(guessType == 1){
 			currentGuess = ((max + min)/2);
 		} else if(guessType == 2) {
 			currentGuess = rnd.nextInt(min, max + 1);
+		} else if(guessType == 3){
+			int tempMin = ((max + min)/2) - ((max + min)/4);
+			if(tempMin < min){
+				tempMin = min;
+			}
+			int tempMax = ((max + min)/2) + ((max + min)/4);
+			if(tempMax > max){
+				tempMax = max;
+			}
+			currentGuess = rnd.nextInt(tempMin, tempMax + 1);
 		}
 		return currentGuess;
 	}
@@ -53,5 +63,4 @@ public class ComputerGuesser implements IGuesser
 	{
 		return true;
 	}
-
 }
